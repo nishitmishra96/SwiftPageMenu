@@ -442,6 +442,27 @@ extension TabMenuView: UICollectionViewDelegate {
 
         self.updateCurrentIndexForTap(indexPath.item)
     }
+    
+    public func selectItem(indexPath: IndexPath){
+        let fixedIndex = self.isInfinite ? indexPath.item % self.pageTabItemsCount : indexPath.item
+        var direction: EMPageViewControllerNavigationDirection = .forward
+
+        if self.isInfinite == true {
+            if (indexPath.item < self.pageTabItemsCount) || (indexPath.item < self.currentIndex) {
+                direction = .reverse
+            }
+        } else {
+            if indexPath.item < self.currentIndex {
+                direction = .reverse
+            }
+        }
+
+        self.updateCollectionViewUserInteractionEnabled(false)
+
+        self.pageItemPressedBlock?(fixedIndex, direction)
+
+        self.updateCurrentIndexForTap(indexPath.item)
+    }
 
     internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.isDragging && self.isInfinite {

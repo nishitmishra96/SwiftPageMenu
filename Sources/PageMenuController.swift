@@ -94,7 +94,7 @@ open class PageMenuController: UIViewController {
         return self.menuTitles.count
     }
     public func moveToViewController(indexPath:IndexPath){
-        self.tabView.selectItem(at: indexPath)
+        self.tabView.selectItem(indexPath: indexPath)
     }
 
     public init(options: PageMenuOptions? = nil) {

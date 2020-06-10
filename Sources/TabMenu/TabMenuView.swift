@@ -388,6 +388,9 @@ extension TabMenuView: UICollectionViewDataSource {
 
         self.configureCell(cell, indexPath: indexPath)
 
+        cell.layer.cornerRadius = 20
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.red.cgColor
         return cell
     }
 
